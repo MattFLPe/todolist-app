@@ -1,0 +1,23 @@
+{
+  "name": "todolist-app",
+  "version": "1.0.0",
+  "description": "A to-do list app project from TOP that uses JavaScript DOM manipulation and Webpack.",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MattFLPe/todolist-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MattFLPe/todolist-app/issues"
+  },
+  "homepage": "https://github.com/MattFLPe/todolist-app#readme",
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
+  }
+}
