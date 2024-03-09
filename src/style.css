@@ -11,12 +11,17 @@ body {
     justify-content: center;
 }
 
-.interface {
-    height: 100%;
+.todoContainer {
+    height: 300px;
     width: 300px;
     margin-top: 50px;
     background-color: white;
     display:flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+}
+
+#todoList {
+    list-style-type: none;
 }
