@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/MattFLPe/todolist-app#readme",
   "devDependencies": {
+    "css-loader": "^6.10.0",
+    "style-loader": "^3.3.4",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "date-fns": "^3.3.1"
   }
 }
