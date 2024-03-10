@@ -9,11 +9,19 @@
 <body>
     <div class="todoContainer">
         <h1>Todo List</h1>
-        <input type="text" class="newTodo" placeholder="Add a new todo">
+        <input type="text" class="newTodoTitle" placeholder="Add a new todo">
         <textarea class="newTodoDescription" placeholder="Todo Description"></textarea>
         <input type="date" class="newTodoDueDate">
+        <label for="newTodoPriority">Priority:</label>
+        <select class="newTodoPriority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
         <button class="buttonAddTodo">Add Todo</button>
         <ul id="todoList"></ul>
+        <h3>My Projects</h3>
+        <button class="buttonAddProject">Add Project</button>
     </div>
 </body>
 <script src="./index.bundle.js"></script>
