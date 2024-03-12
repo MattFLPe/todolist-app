@@ -1,14 +1,51 @@
-export { createNewTodo, updateTodoList, createNewProject }
+export { createNewTodo, updateTodoList, createNewProject, updateProjectList }
 
+const projectList = [];
+
+function createNewProject() {
+   //const projectName = document.querySelector('.projectContainer')
+   let projectTitle = document.querySelector(".projectTitle").value;
+
+   if (projectTitle.trim() !== "") {
+    let newProject = {
+        title: projectTitle,
+    };
+
+    projectList.push(newProject);
+
+    updateProjectList();
+
+    document.querySelector(".projectTitle").value;
+
+}
+}
+
+function updateProjectList() {
+    //const projectName = document.querySelector('.projectContainer')
+    let projectListElement = document.querySelector(".projectList");
+
+    // Clear the existing list
+   //projectListElement.innerHTML = "";
+
+    // Loop through the todoList array and create list items
+    for (let i = 0; i < projectList.length; i++) {
+        let project = projectList[i];
+        let li = document.createElement("li");
+
+        li.textContent = project.title
+
+        projectListElement.appendChild(li);
+    };
+};
+
+const todoList = [];
 
 function createNewTodo() {
-
-    const todoList = [];
 
     let newTodoTitle = document.querySelector(".newTodoTitle").value;
     let newTodoDescription = document.querySelector(".newTodoDescription").value;
     let newTodoDueDate = document.querySelector(".newTodoDueDate").value;
-    let newTodoPriority = document.querySelector(".newTodoPriority").value;
+    //let newTodoPriority = document.querySelector(".newTodoPriority").value;
 
 
     if (newTodoTitle.trim() !== "") {
@@ -18,7 +55,7 @@ function createNewTodo() {
             title: newTodoTitle,
             description: newTodoDescription,
             dueDate: newTodoDueDate,
-            priority: newTodoPriority,
+           // priority: newTodoPriority,
             completed: false
         };
 
@@ -29,7 +66,7 @@ function createNewTodo() {
         document.querySelector(".newTodoTitle").value = "";
         document.querySelector(".newTodoDescription").value = "";
         document.querySelector(".newTodoDueDate").value = "";
-        document.querySelector(".newTodoPriority").value = "low"
+        //document.querySelector(".newTodoPriority").value = "low"
         
     } else {
             alert("Please enter a todo before adding.");
@@ -50,8 +87,7 @@ function updateTodoList() {
 
         // Customize the display based on your todo object structure
         li.textContent = "[" + (todo.completed ? "x" : " ") + "] " + todo.title + " - " + 
-        todo.description + " (Due Date: " + todo.dueDate + ")" +
-        " - Priority: " + todo.priority;
+        todo.description + " (Due Date: " + todo.dueDate + ")"
         // You can add more functionality or styling here
         li.setAttribute("data-todo-id", todo.id);
 
@@ -59,12 +95,6 @@ function updateTodoList() {
     };
 };
 
-function createNewProject() {
-    const todoContainer = document.querySelector('.todoContainer')
-    const projectList = [];
-
-    
-}
 
 function todoComplete() {
 
