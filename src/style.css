@@ -12,9 +12,9 @@ body {
 }
 
 .todoContainer {
-    height: 300px;
-    width: 300px;
-    margin-top: 50px;
+    height: 400px;
+    width: 700px;
+    
     background-color: white;
     display:flex;
     flex-direction: column;
@@ -24,4 +24,30 @@ body {
 
 #todoList {
     list-style-type: none;
+}
+
+input[type="text"] {
+    width: 200px;
+}
+
+.projectContainer {
+    text-align: center;
+    background-color: rgb(237, 238, 234);
+    width: 600px;
+    height: 400px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px black solid;
+}
+
+.projectStyle {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.todoStyle {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
 }
