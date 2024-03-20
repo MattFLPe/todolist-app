@@ -30,7 +30,7 @@ input[type="text"] {
     width: 200px;
 }
 
-.projectContainer {
+.container {
     text-align: center;
     background-color: rgb(237, 238, 234);
     width: 600px;
