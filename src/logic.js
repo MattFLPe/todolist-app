@@ -1,42 +1,30 @@
-export { createNewTodo, updateTodoList, createNewProject, updateProjectList }
+export { createNewTodo, updateTodoList, addTodoProject }
 
-const projectList = [];
+const projectContainers = [];
 
-function createNewProject() {
-   //const projectName = document.querySelector('.projectContainer')
-   let projectTitle = document.querySelector(".projectTitle").value;
+function addTodoProject() {
 
-   if (projectTitle.trim() !== "") {
-    let newProject = {
-        title: projectTitle,
-    };
+     //const projectName = document.querySelector('.projectContainer')
+     let projectTitle = document.querySelector(".projectTitle").value;
+     document.querySelector(".projectTitle").value = "";
 
-    projectList.push(newProject);
+     let container = document.querySelector('.container')
 
-    updateProjectList();
+     let projectContainer = document.createElement('div');
+     projectContainer.classList.add('projectContainer');
+    
 
-    document.querySelector(".projectTitle").value;
+     projectContainer.innerHTML = `<h3>${projectTitle}</h3>`;
 
-}
-}
+     container.appendChild(projectContainer);
+    
+     projectContainers.push(projectContainer);
 
-function updateProjectList() {
-    //const projectName = document.querySelector('.projectContainer')
-    let projectListElement = document.querySelector(".projectList");
-
-    // Clear the existing list
-   //projectListElement.innerHTML = "";
-
-    // Loop through the todoList array and create list items
-    for (let i = 0; i < projectList.length; i++) {
-        let project = projectList[i];
-        let li = document.createElement("li");
-
-        li.textContent = project.title
-
-        projectListElement.appendChild(li);
-    };
+ 
 };
+
+
+
 
 const todoList = [];
 
@@ -59,9 +47,7 @@ function createNewTodo() {
             completed: false
         };
 
-        todoList.push(newTodo);
-
-        updateTodoList();
+        todoList.push(newTodo)
 
         document.querySelector(".newTodoTitle").value = "";
         document.querySelector(".newTodoDescription").value = "";
@@ -74,24 +60,27 @@ function createNewTodo() {
 
 }
 
+
 function updateTodoList() {
     let todoListElement = document.getElementById("todoList");
+    let todoProjContainer = document.querySelector('.projectContainer')
 
     // Clear the existing list
-    todoListElement.innerHTML = "";
+    //todoListElement.innerHTML = "";
 
     // Loop through the todoList array and create list items
     for (let i = 0; i < todoList.length; i++) {
         let todo = todoList[i];
-        let li = document.createElement("li");
+        let todoProjList = document.createElement("li");
 
         // Customize the display based on your todo object structure
-        li.textContent = "[" + (todo.completed ? "x" : " ") + "] " + todo.title + " - " + 
+        todoProjList.textContent = "[" + (todo.completed ? "x" : " ") + "] " + todo.title + " - " + 
         todo.description + " (Due Date: " + todo.dueDate + ")"
         // You can add more functionality or styling here
-        li.setAttribute("data-todo-id", todo.id);
+        todoProjList.setAttribute("data-todo-id", todo.id);
 
-        todoListElement.appendChild(li);
+        
+        todoProjContainer.appendChild(todoProjList);
     };
 };
 
