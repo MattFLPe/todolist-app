@@ -1,90 +1,106 @@
-export { createNewTodo, updateTodoList, addTodoProject }
+export { createNewTodo, addTodoProject }
 
-const projectContainers = [];
 
+// Function to add a new project container
 function addTodoProject() {
+    const projectTitleInput = document.querySelector(".projectTitle");
+    const projectTitle = projectTitleInput.value.trim();
 
-     //const projectName = document.querySelector('.projectContainer')
-     let projectTitle = document.querySelector(".projectTitle").value;
-     document.querySelector(".projectTitle").value = "";
+    if (!projectTitle) {
+        alert("Please enter a project title before adding.");
+        return;
+    }
 
-     let container = document.querySelector('.container')
+    projectTitleInput.value = "";
 
-     let projectContainer = document.createElement('div');
-     projectContainer.classList.add('projectContainer');
-    
+    const container = document.querySelector('.container');
+    const projectContainer = document.createElement('div');
+    projectContainer.classList.add('projectContainer');
+    projectContainer.innerHTML = `<h3>${projectTitle}</h3>`;
+    container.appendChild(projectContainer);
 
-     projectContainer.innerHTML = `<h3>${projectTitle}</h3>`;
+    let buttonAdd = document.createElement('button')
+    buttonAdd.textContent = "Add Todo"
+    buttonAdd.addEventListener('click', () => {
+        createNewTodo(projectContainer);
+    })
+    createNewTodo(projectContainer);
 
-     container.appendChild(projectContainer);
-    
-     projectContainers.push(projectContainer);
+    projectContainer.appendChild(buttonAdd)
 
- 
-};
+    // Add event listener to the project container to handle adding todos
+    //projectContainer.addEventListener('click', createNewTodo);
+}
 
-
-
-
-const todoList = [];
-
-function createNewTodo() {
-
+// Function to create a new todo
+function createNewTodo(projectContainer) {
     let newTodoTitle = document.querySelector(".newTodoTitle").value;
     let newTodoDescription = document.querySelector(".newTodoDescription").value;
     let newTodoDueDate = document.querySelector(".newTodoDueDate").value;
-    //let newTodoPriority = document.querySelector(".newTodoPriority").value;
+    
 
-
-    if (newTodoTitle.trim() !== "") {
-        // Create a new todo object
-        let newTodo = {
-            id: Date.now(),
-            title: newTodoTitle,
-            description: newTodoDescription,
-            dueDate: newTodoDueDate,
-           // priority: newTodoPriority,
-            completed: false
-        };
-
-        todoList.push(newTodo)
-
-        document.querySelector(".newTodoTitle").value = "";
-        document.querySelector(".newTodoDescription").value = "";
-        document.querySelector(".newTodoDueDate").value = "";
-        //document.querySelector(".newTodoPriority").value = "low"
-        
-    } else {
-            alert("Please enter a todo before adding.");
-        }
-
-}
-
-
-function updateTodoList() {
-    let todoListElement = document.getElementById("todoList");
-    let todoProjContainer = document.querySelector('.projectContainer')
-
-    // Clear the existing list
-    //todoListElement.innerHTML = "";
-
-    // Loop through the todoList array and create list items
-    for (let i = 0; i < todoList.length; i++) {
-        let todo = todoList[i];
-        let todoProjList = document.createElement("li");
-
-        // Customize the display based on your todo object structure
-        todoProjList.textContent = "[" + (todo.completed ? "x" : " ") + "] " + todo.title + " - " + 
-        todo.description + " (Due Date: " + todo.dueDate + ")"
-        // You can add more functionality or styling here
-        todoProjList.setAttribute("data-todo-id", todo.id);
-
-        
-        todoProjContainer.appendChild(todoProjList);
+    const newTodo = {
+        id: Date.now(),
+        title: newTodoTitle,
+        description: newTodoDescription,
+        dueDate: newTodoDueDate,
+        completed: false
     };
-};
 
+    const todoElement = document.createElement("div");
+    todoElement.classList.add("todoStyle");
+    todoElement.innerHTML = `
+        <h3>${newTodo.title}</h3>
+        <p>${newTodo.description}</p>
+        <p>Due Date: ${newTodo.dueDate}</p>
+        <button class="toggle-completion">Toggle Completion</button>`;
+    todoElement.setAttribute("data-todo-id", newTodo.id);
 
-function todoComplete() {
+   
 
+    const toggleButton = todoElement.querySelector('.toggle-completion');
+    toggleButton.addEventListener('click', function() {
+        markAsCompleted(newTodo.id);
+    });
+
+    // Add event listener to the todo item to handle completion
+    //todoListElement.addEventListener('click', toggleTodoCompletion);
+    projectContainer.appendChild(todoElement);
 }
+/*
+// Function to remove a todo item
+function removeTodo(todoId) {
+    // Remove the todo from the todoList array
+    const index = todoList.findIndex(todo => todo.id.toString() === todoId);
+    if (index !== -1) {
+        todoList.splice(index, 1);
+    }
+
+    // Remove the todo element from the DOM
+    const todoElement = document.querySelector(`[data-todo-id="${todoId}"]`);
+    if (todoElement) {
+        todoElement.remove();
+    }
+}
+*/
+
+// Function to mark a todo as completed
+function markAsCompleted(todoId) {
+    const todo = todoList.find(todo => todo.id.toString() === todoId);
+    if (!todo) return;
+
+    todo.completed = true;
+    const todoElement = document.querySelector(`[data-todo-id="${todoId}"]`);
+    if (todoElement) {
+        todoElement.classList.add('completed');
+    }
+}
+
+// Array to store todos
+const todoList = [];
+/*
+// Call addTodoProject when the DOM content is loaded
+document.addEventListener("DOMContentLoaded", function () {
+    addTodoProject();
+});
+*/
